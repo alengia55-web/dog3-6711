@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-display: "Comfortaa", "Trebuchet MS", sans-serif;
+  --font-sans: "Commissioner", system-ui, sans-serif;
+
+  --color-ink: #131211;
+  --color-paper: #ffffff;
+  --color-pink: #ffd3e2;
+  --color-pink-deep: #f9a8c4;
+  --color-yellow: #fff2b8;
+  --color-yellow-deep: #ffd84d;
+  --color-mint: #c9f2e0;
+  --color-mint-deep: #7ed9b3;
+  --color-sky: #d3e9ff;
+  --color-sky-deep: #84c5f7;
+  --color-stone: #f4f2ef;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-yellow-deep);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+}
+
+@utility comic-card {
+  border: 2px solid var(--color-ink);
+  border-radius: 1.5rem;
+  box-shadow: 6px 6px 0 var(--color-ink);
+  background: var(--color-paper);
+}
+
+@utility comic-btn {
+  /* Links use it too, and an <a> is inline by default — pin the box model here
+     so an icon + label never stacks or stretches to the full row width. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--color-ink);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background-color 0.12s ease;
+}
+
+@utility comic-input {
+  width: 100%;
+  border: 2px solid var(--color-ink);
+  border-radius: 0.9rem;
+  background: var(--color-paper);
+  padding: 0.625rem 0.875rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-ink);
+}
+
+.comic-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+
+.comic-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--color-ink);
+}
+
+.comic-btn:disabled {
+  opacity: 0.6;
+  transform: none;
+  box-shadow: 4px 4px 0 var(--color-ink);
+  cursor: not-allowed;
+}
+
+.card-hover {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.card-hover:hover {
+  transform: translate(-3px, -3px) rotate(-0.4deg);
+  box-shadow: 9px 9px 0 var(--color-ink);
+}
+
+/* Paper texture of tiny dots for pastel bands */
+.dots {
+  background-image: radial-gradient(var(--color-ink) 1.1px, transparent 1.1px);
+  background-size: 18px 18px;
+  opacity: 0.08;
+}
+
+/* Staggered page-load reveal */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes wag {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+.wag:hover {
+  animation: wag 0.5s ease-in-out 2;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.floaty {
+  animation: floaty 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .floaty,
+  .wag:hover {
+    animation: none;
+  }
+}
