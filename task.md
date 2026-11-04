@@ -55,3 +55,17 @@ G. English version (full EL/EN bilingual)
 - Clean export installed with frozen lockfile; production web build under Node 24 passed. Official Netlify packager + complete isolated API test suite passed again from clean export.
 - ZIP `/home/user/exports/amores-perros-full-netlify.zip`: 167 files, 14.04 MiB. TOML routing, new galleries, credential scan and ZIP integrity passed; excludes env files, dependencies, generated output and operational import scripts.
 - No live Netlify deployment performed; user must configure the existing database/storage credentials and deploy via Git/CLI.
+
+## Live Netlify repair — verified 2026-11-04
+- Site shelterdogsk, ID 07e82335-fadb-4d67-ba39-6cf407c1b394.
+- Root cause: Turso credentials valid, but new database had no tables.
+- Installed schema + exact 15 current dogs, 13 gallery rows and public settings transactionally into NEW database only.
+- Initial photo paths mapped to identical optimized assets already on live deployment; all 28 verified.
+- Deployed full first-install package via connected Netlify MCP. Deploy 6aea78c7b3c22f4a6fcd98f8 ready.
+- New owner admin created using connected Netlify owner email, secure generated password delivered separately (never Git).
+- Admin API login, protected dog list and browser dashboard verified; 15 dogs and zero test applications remaining.
+- Adoption and volunteer forms saved/admin-visible; synthetic test records removed. Email not configured.
+- Browser homepage: all 15 card images decoded; dog detail deep link verified.
+- Netlify advanced secret flag/scopes returned403; standard server environment variables succeeded. No client-prefixed secrets used.
+- Upload storage credentials and Resend notifications still pending. Public bank/contact settings include placeholders; owner must replace.
+- Added idempotent first-install files/config/assets to source so future Git deploys preserve the installed data and admin.

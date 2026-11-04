@@ -11,6 +11,8 @@
     "dev:mobile": "cd packages/mobile && bunx expo start --port 4300",
     "build": "turbo build",
     "build:web": "cd packages/web && bunx vite build",
+    "setup:netlify": "bun netlify-install/initialize.ts",
+    "build:netlify": "bun run setup:netlify && bun run --cwd packages/web build",
     "start": "pm2 startOrRestart ecosystem.config.cjs --update-env",
     "stop": "pm2 delete web-app 2>/dev/null || true",
     "kill:port": "bun run internal:kill-port",

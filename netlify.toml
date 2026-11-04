@@ -1,5 +1,5 @@
 [build]
-  command = "bun run --cwd packages/web build"
+  command = "bun run build:netlify"
   publish = "packages/web/dist"
   functions = "packages/web/netlify/functions"
 
