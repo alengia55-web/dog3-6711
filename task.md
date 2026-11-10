@@ -77,4 +77,5 @@ G. English version (full EL/EN bilingual)
 - Shared DogDetails/DogGallery preserve bilingual stories, traits, health and adoption CTA on popup + direct profile pages.
 - Uncropped main photo, arrows, thumbnail selection, counter, keyboard arrows and touch swipe. Single-photo dogs show one photo with no fake extra items.
 - Build passed. Playwright local tests passed: 15 cards, thumbnails/arrows/keyboard, focus/close/Escape/backdrop, repeated donation edge clicks, 390px/320px mobile no overflow, deep links and single-photo fallback.
-- Live deploy pending verification.
+- Live deploy 6af34a08dfa537040a9ff435 ready at https://shelterdogsk.netlify.app. Complete UI test suite passed on the live site, including repeated donation navigation and desktop/mobile galleries. Additional live touch-swipe and selected-dog adoption CTA tests passed.
+- GitHub main updated with UI changes (13051a0). No database records or administrator credentials were changed.
