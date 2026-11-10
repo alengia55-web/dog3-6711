@@ -69,3 +69,12 @@ G. English version (full EL/EN bilingual)
 - Netlify advanced secret flag/scopes returned403; standard server environment variables succeeded. No client-prefixed secrets used.
 - Upload storage credentials and Resend notifications still pending. Public bank/contact settings include placeholders; owner must replace.
 - Added idempotent first-install files/config/assets to source so future Git deploys preserve the installed data and admin.
+
+## Donation links and compact dog galleries
+- Donation CTAs now use normal /donate URLs; mobile header always shows donation button. Hover/active shadows no longer move the clickable hit box.
+- Public route changes scroll to top without affecting hash navigation.
+- Dog cards open native modal dialogs (max 880px, 90dvh), retaining direct hrefs for modified clicks. Close button, Escape, backdrop, native focus trapping and restoration; background scroll locked.
+- Shared DogDetails/DogGallery preserve bilingual stories, traits, health and adoption CTA on popup + direct profile pages.
+- Uncropped main photo, arrows, thumbnail selection, counter, keyboard arrows and touch swipe. Single-photo dogs show one photo with no fake extra items.
+- Build passed. Playwright local tests passed: 15 cards, thumbnails/arrows/keyboard, focus/close/Escape/backdrop, repeated donation edge clicks, 390px/320px mobile no overflow, deep links and single-photo fallback.
+- Live deploy pending verification.

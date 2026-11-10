@@ -71,7 +71,9 @@ export function ComicLink({
     sizes[size],
     className,
   );
-  if (to) {
+  // Donation CTAs use a normal URL: reliable on repeated taps, direct refresh,
+  // and when navigating from an in-page anchor far down the homepage.
+  if (to && to !== "/donate") {
     return (
       <Link to={to} className={classes}>
         {children}
@@ -80,7 +82,7 @@ export function ComicLink({
   }
   return (
     <a
-      href={href}
+      href={to ?? href}
       className={classes}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
     >

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Heart, Instagram, Menu, X } from "lucide-react";
 import { useLocale } from "../hooks/use-locale";
@@ -33,6 +33,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [location] = useLocation();
 
+  useEffect(() => {
+    setOpen(false);
+    if (!window.location.hash) window.scrollTo({ top: 0, behavior: "instant" });
+  }, [location]);
+
   const links = [
     { href: "/#dogs", label: t.nav.dogs },
     { href: "/adopt", label: t.nav.adopt },
@@ -44,15 +49,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-paper">
       <header className="sticky top-0 z-50 border-b-2 border-ink bg-paper/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-          <Link to="/" className="flex shrink-0 items-center gap-2.5 no-underline">
+        <div className="mx-auto flex max-w-6xl items-center gap-2 px-3 py-3 sm:gap-4 sm:px-4">
+          <Link to="/" className="flex min-w-0 items-center gap-2.5 no-underline">
             <img
               src="/images/site/logo.png"
               alt="Amores Perros"
-              className="wag size-11 md:size-12"
+              className="wag size-9 shrink-0 sm:size-11 md:size-12"
             />
             <span className="leading-tight">
-              <span className="block font-display text-lg font-bold md:text-xl">
+              <span className="block font-display text-sm font-bold sm:text-lg md:text-xl">
                 Amores Perros
               </span>
               <span className="hidden text-[11px] text-ink/60 sm:block">{t.brandSub}</span>
@@ -76,8 +81,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="ml-auto flex items-center gap-2 lg:ml-0">
             <LocaleToggle />
-            <ComicLink to="/donate" tone="yellow" size="sm" className="hidden sm:inline-flex">
-              <Heart className="size-4" /> {t.nav.donate}
+            <ComicLink to="/donate" tone="yellow" size="sm" className="min-h-11 shrink-0 px-2 text-xs sm:px-4 sm:text-sm">
+              <Heart className="hidden size-4 sm:block" /> {t.nav.donate}
             </ComicLink>
             <button
               type="button"
@@ -103,13 +108,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   {link.label}
                 </a>
               ))}
-              <Link
-                to="/donate"
+              <a
+                href="/donate"
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-3 py-2 font-display font-bold no-underline"
               >
                 {t.nav.donate}
-              </Link>
+              </a>
             </div>
           </nav>
         ) : null}

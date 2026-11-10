@@ -1,24 +1,30 @@
 import { useState } from "react";
-import { Link } from "wouter";
 import { ArrowUpRight, PawPrint } from "lucide-react";
 import { useLocale } from "../hooks/use-locale";
 import { useDogs } from "../queries/dogs";
 import { cn } from "../lib/utils";
+import { DogPreview } from "./dog-preview";
 
 type Dog = NonNullable<ReturnType<typeof useDogs>["data"]>[number];
 type Filter = "all" | "available" | "adopted";
 
 const cardTones = ["bg-pink", "bg-yellow", "bg-mint", "bg-sky"];
 
-function DogCard({ dog, index }: { dog: Dog; index: number }) {
+function DogCard({ dog, index, onOpen }: { dog: Dog; index: number; onOpen: () => void }) {
   const { locale, t } = useLocale();
   const name = locale === "el" ? dog.name : dog.nameEn;
   const age = locale === "el" ? dog.ageEl : dog.ageEn;
   const size = locale === "el" ? dog.sizeEl : dog.sizeEn;
 
   return (
-    <Link
-      to={`/dogs/${dog.slug}`}
+    <a
+      href={`/dogs/${dog.slug}`}
+      aria-haspopup="dialog"
+      onClick={event => {
+        if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+          event.preventDefault(); onOpen();
+        }
+      }}
       aria-label={`${t.dogs.meetDog}: ${name}`}
       className={cn(
         "comic-card card-hover rise block h-full overflow-hidden text-ink no-underline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-ink",
@@ -67,7 +73,7 @@ function DogCard({ dog, index }: { dog: Dog; index: number }) {
           {t.dogs.meetDog} <ArrowUpRight className="size-4 shrink-0" />
         </span>
       </div>
-    </Link>
+    </a>
   );
 }
 
@@ -75,6 +81,7 @@ export function DogGrid() {
   const { t } = useLocale();
   const dogs = useDogs();
   const [filter, setFilter] = useState<Filter>("all");
+  const [selected, setSelected] = useState<Dog | null>(null);
 
   const all = dogs.data ?? [];
   const list =
@@ -125,11 +132,11 @@ export function DogGrid() {
       ) : (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {list.map((dog, i) => (
-            <DogCard key={dog.id} dog={dog} index={i} />
+            <DogCard key={dog.id} dog={dog} index={i} onOpen={() => setSelected(dog)} />
           ))}
         </div>
       )}
-
+      {selected && <DogPreview dog={selected} onClose={() => setSelected(null)} />}
     </div>
   );
 }

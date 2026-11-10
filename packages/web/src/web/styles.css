@@ -90,12 +90,10 @@
 }
 
 .comic-btn:hover {
-  transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--color-ink);
 }
 
 .comic-btn:active {
-  transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--color-ink);
 }
 
@@ -115,6 +113,28 @@
 .card-hover:hover {
   transform: translate(-3px, -3px) rotate(-0.4deg);
   box-shadow: 9px 9px 0 var(--color-ink);
+}
+
+.dog-preview {
+  position: fixed;
+  inset: 0;
+  width: min(880px, calc(100% - 24px));
+  max-width: none;
+  max-height: 90dvh;
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 2px solid var(--color-ink);
+  border-radius: 1.5rem;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: 8px 8px 0 var(--color-ink);
+}
+
+.dog-preview::backdrop {
+  background: rgb(19 18 17 / 65%);
+  backdrop-filter: blur(3px);
 }
 
 /* Paper texture of tiny dots for pastel bands */

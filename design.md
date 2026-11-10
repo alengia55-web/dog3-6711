@@ -51,6 +51,9 @@ Text is always near-black `--ink` on pastel or white — no pastel text, no gray
   soft white veil. Card stays legible and celebratory (this proves the shelter works).
 - Cards use matching 4:5 photo frames and identical fixed-height summary panels: name, age, sex, size, and a “Meet me” link. The entire card opens a dog profile.
 - Full bios, personality traits, health chips, photo gallery and adoption CTA appear on `/dogs/:slug`, not in the grid. Available and adopted cards stay the same height.
+- Clicking a card opens an accessible, centered compact dog-preview dialog (max 880px, scrollable within 90vh). Direct profile URLs and modified-click new tabs remain supported.
+- Gallery uses uncropped contained photographs, previous/next buttons, a photo counter, selectable thumbnails, keyboard arrows and mobile swipe. Single-photo dogs never show invented gallery items.
+- Donation links have stable hit areas (no moving hover transforms), remain visible on mobile and reliably open the donation page at its top.
 
 ## Layout
 
