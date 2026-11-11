@@ -4,6 +4,7 @@ import { KeyRound, Loader2 } from "lucide-react";
 import { authClient } from "../../lib/auth";
 import { client } from "../../lib/api";
 import { useAdminText } from "../../queries/admin";
+import { useLocale } from "../../hooks/use-locale";
 import { Field, TextInput } from "../../components/ui/field";
 import { cn } from "../../lib/utils";
 
@@ -26,6 +27,7 @@ function localizeError(raw: string, a: ReturnType<typeof useAdminText>["a"]) {
 
 export default function AdminLogin() {
   const { a } = useAdminText();
+  const { t } = useLocale();
   const [, navigate] = useLocation();
   const [mode, setMode] = useState<Mode>("signIn");
   const [form, setForm] = useState({ name: "", email: "", password: "", inviteCode: "" });
@@ -66,7 +68,7 @@ export default function AdminLogin() {
       <div className="w-full max-w-md">
         <Link to="/" className="mb-6 flex items-center justify-center gap-3 no-underline">
           <img src="/images/site/logo.png" alt="" className="size-12" />
-          <span className="font-display text-2xl font-bold">Amores Perros</span>
+          <span className="font-display text-xl font-bold leading-snug">{t.brand}</span>
         </Link>
 
         <div className="comic-card bg-paper p-6">

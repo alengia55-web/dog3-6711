@@ -15,8 +15,8 @@ export const CONTACT = {
 
 export const dict = {
   el: {
-    brand: "Amores Perros",
-    brandSub: "Κυνοκομείο Δήμου Μετεώρων",
+    brand: "Κυνοκομείο Δήμου Μετεώρων",
+    brandSub: "Φροντίδα · Υιοθεσία · Εθελοντισμός",
     nav: {
       dogs: "Τα σκυλιά μας",
       adopt: "Υιοθεσία",
@@ -218,8 +218,8 @@ export const dict = {
     },
   },
   en: {
-    brand: "Amores Perros",
-    brandSub: "Municipal Dog Shelter of Meteora",
+    brand: "Municipal Dog Shelter of Meteora",
+    brandSub: "Care · Adoption · Volunteering",
     nav: {
       dogs: "Our dogs",
       adopt: "Adopt",

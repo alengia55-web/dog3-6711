@@ -79,3 +79,13 @@ G. English version (full EL/EN bilingual)
 - Build passed. Playwright local tests passed: 15 cards, thumbnails/arrows/keyboard, focus/close/Escape/backdrop, repeated donation edge clicks, 390px/320px mobile no overflow, deep links and single-photo fallback.
 - Live deploy 6af34a08dfa537040a9ff435 ready at https://shelterdogsk.netlify.app. Complete UI test suite passed on the live site, including repeated donation navigation and desktop/mobile galleries. Additional live touch-swipe and selected-dog adoption CTA tests passed.
 - GitHub main updated with UI changes (13051a0). No database records or administrator credentials were changed.
+
+## Shelter rebrand and requested .gr domain
+- User approved replacing all visible Amores Perros branding with Κυνοκομείο Δήμου Μετεώρων, retaining the original dog illustration.
+- Updated bilingual wordmark/header/footer/forms/login, document title/social metadata, notification sender name/footer and sharing image. Added downloadable Greek logo lockup.
+- Public footer displays requested kinokomeiodimoumeteoron.gr as text only until DNS/domain configuration is active.
+- Preserved existing storage/token keys, accounts and dog records. Removed only obsolete placeholder beneficiary from live settings; did not substitute an unverified bank-account name or alter IBAN.
+- Updated first-install contact snapshot to confirmed public email/phone and blank placeholder beneficiary.
+- Domain DNS Google resolver returned NXDOMAIN for apex/www and no NS records. Netlify connected inventory has no custom-domain write action; browser Netlify dashboard is not logged in. Registrar/Netlify domain configuration requires owner input.
+- Kept WEBSITE_URL on working Netlify hostname; custom-domain auth/origin switch pending domain activation, to avoid breaking live forms/admin.
+- Local build and mobile header overflow tests passed. Live rebrand deployment pending verification.

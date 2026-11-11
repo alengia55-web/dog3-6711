@@ -4,7 +4,7 @@
  * no email was sent (the submission is always stored in the database).
  */
 const NOTIFY_TO = process.env.NOTIFY_EMAIL ?? "sarantiath@gmail.com";
-const FROM = process.env.NOTIFY_FROM ?? "Amores Perros <onboarding@resend.dev>";
+const FROM = process.env.NOTIFY_FROM ?? "Κυνοκομείο Δήμου Μετεώρων <onboarding@resend.dev>";
 
 export interface SendEmailOptions {
   subject: string;
@@ -66,6 +66,6 @@ export function renderRows(title: string, rows: Array<[string, string | undefine
   return `<div style="font-family:system-ui,sans-serif;color:#131211">
     <h2 style="margin:0 0 12px">${title}</h2>
     <table style="border-collapse:collapse;font-size:14px;max-width:640px">${body}</table>
-    <p style="margin-top:16px;font-size:12px;color:#777">Amores Perros — Κυνοκομείο Δήμου Μετεώρων</p>
+    <p style="margin-top:16px;font-size:12px;color:#777">Κυνοκομείο Δήμου Μετεώρων</p>
   </div>`;
 }

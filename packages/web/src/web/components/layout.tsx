@@ -53,12 +53,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Link to="/" className="flex min-w-0 items-center gap-2.5 no-underline">
             <img
               src="/images/site/logo.png"
-              alt="Amores Perros"
+              alt={t.brand}
               className="wag size-9 shrink-0 sm:size-11 md:size-12"
             />
             <span className="leading-tight">
-              <span className="block font-display text-sm font-bold sm:text-lg md:text-xl">
-                Amores Perros
+              <span className="block max-w-36 font-display text-[11px] font-bold leading-snug sm:max-w-56 sm:text-base md:text-lg">
+                {t.brand}
               </span>
               <span className="hidden text-[11px] text-ink/60 sm:block">{t.brandSub}</span>
             </span>
@@ -128,9 +128,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <div className="flex items-center gap-3">
                 <img src="/images/site/logo.png" alt="" className="size-12" />
-                <span className="font-display text-2xl font-bold">Amores Perros</span>
+                <span className="font-display text-2xl font-bold leading-snug">{t.brand}</span>
               </div>
               <p className="mt-3 text-sm text-paper/70">{t.brandSub}</p>
+              <p className="mt-3 break-all text-sm text-paper/70">kinokomeiodimoumeteoron.gr</p>
               <p className="mt-4 text-sm text-paper/70">{t.footer.madeWith}</p>
             </div>
 

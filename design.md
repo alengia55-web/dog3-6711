@@ -1,8 +1,10 @@
-# Amores Perros — Design System
+# Κυνοκομείο Δήμου Μετεώρων — Design System
 
 Municipal dog shelter of Δήμος Μετεώρων. Bilingual EL/EN. The feeling: clean, playful, very happy,
 never confusing. Comic-sticker energy on a white page — think a friendly children's-book poster,
 not a corporate municipal portal.
+
+Brand name: Κυνοκομείο Δήμου Μετεώρων (English: Municipal Dog Shelter of Meteora). Retain the existing illustrated dog mark, replacing the former wordmark everywhere. Requested domain: kinokomeiodimoumeteoron.gr; activation requires registrar DNS and Netlify custom-domain configuration.
 
 ## Colors
 
