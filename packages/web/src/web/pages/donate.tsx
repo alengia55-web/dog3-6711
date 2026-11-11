@@ -14,6 +14,7 @@ import {
 import { useLocale } from "../hooks/use-locale";
 import { useContact } from "../hooks/use-contact";
 import { ComicButton, ComicLink, Sticker, Wave } from "../components/ui/comic";
+import { InKindForm } from "../components/in-kind-form";
 
 function CopyRow({
   label,
@@ -168,8 +169,8 @@ export default function DonatePage() {
             </h2>
             <p className="mt-4 text-[15px]">{t.donate.inKindText}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <ComicLink href={CONTACT.instagram} external tone="white">
-                {t.contact.instagram}
+              <ComicLink href="#in-kind-form" tone="white">
+                {t.inKind.title}
               </ComicLink>
               <ComicLink to="/volunteer" tone="ink">
                 {t.nav.volunteer}
@@ -192,6 +193,7 @@ export default function DonatePage() {
             </div>
           </div>
         </div>
+        <InKindForm />
       </section>
     </div>
   );

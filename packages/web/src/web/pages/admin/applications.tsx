@@ -6,7 +6,7 @@ import { useAdminApplications, useAdminText, useApplicationMutations } from "../
 import { TextArea } from "../../components/ui/field";
 import { cn } from "../../lib/utils";
 
-type Kind = "adoption" | "volunteer";
+type Kind = "adoption" | "volunteer" | "inKind";
 type Row = Record<string, unknown> & { id: number; status: string };
 
 const STATUSES = ["new", "review", "approved", "rejected"] as const;
@@ -60,7 +60,7 @@ function Card({ kind, row, fields }: { kind: Kind; row: Row; fields: [string, st
       <div className="flex flex-wrap items-center gap-3">
         <div className="min-w-40 flex-1">
           <div className="font-display text-lg font-bold">{String(row.fullName)}</div>
-          <div className="text-xs text-ink/60">
+          <div className="break-words text-xs text-ink/60">
             {String(row.email)} · {String(row.phone)} ·{" "}
             {new Date(row.createdAt as string).toLocaleDateString(
               locale === "el" ? "el-GR" : "en-GB",
@@ -182,7 +182,12 @@ export default function AdminApplications() {
     ["notes", "Notes"],
   ];
 
-  const rows = ((tab === "adoption" ? data?.adoptions : data?.volunteers) ?? []) as Row[];
+  const inKindFields: [string, string][] = [
+    ["items", a.apps.goods], ["quantity", a.apps.quantity],
+    ["proposedDate", a.apps.proposedDate], ["proposedTime", a.apps.proposedTime],
+    ["notes", a.apps.donorNotes], ["agreeContact", a.apps.contactConsent],
+  ];
+  const rows = ((tab === "adoption" ? data?.adoptions : tab === "volunteer" ? data?.volunteers : data?.inKind) ?? []) as Row[];
   const visible = filter === "all" ? rows : rows.filter((row) => row.status === filter);
 
   const statusLabel: Record<string, string> = {
@@ -195,11 +200,12 @@ export default function AdminApplications() {
   return (
     <AdminShell title={a.apps.title}>
       <div className="mb-5 flex flex-wrap items-center gap-3">
-        <div className="inline-flex overflow-hidden rounded-full border-2 border-ink">
+        <div className="inline-flex max-w-full flex-wrap overflow-hidden rounded-2xl border-2 border-ink">
           {(
             [
               ["adoption", `${a.apps.adoptions} (${data?.adoptions.length ?? 0})`],
               ["volunteer", `${a.apps.volunteers} (${data?.volunteers.length ?? 0})`],
+              ["inKind", `${a.apps.inKind} (${data?.inKind.length ?? 0})`],
             ] as const
           ).map(([value, label]) => (
             <button
@@ -252,7 +258,7 @@ export default function AdminApplications() {
               key={row.id}
               kind={tab}
               row={row}
-              fields={tab === "adoption" ? adoptionFields : volunteerFields}
+              fields={tab === "adoption" ? adoptionFields : tab === "volunteer" ? volunteerFields : inKindFields}
             />
           ))}
         </ul>

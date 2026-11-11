@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { createClient, type InValue } from "@libsql/client";
 import { ensurePetGovColumn } from "./migrate-pet-gov";
+import { ensureInKindTable } from "./migrate-in-kind";
 
 type RecordRow = Record<string, InValue>;
 type Snapshot = {
@@ -37,9 +38,10 @@ try {
     await tx.execute(sql.replace(/^CREATE (TABLE|(?:UNIQUE )?INDEX)\s/i, "CREATE $1 IF NOT EXISTS "));
   }
   await ensurePetGovColumn(tx);
+  await ensureInKindTable(tx);
 
   let hasExistingData = false;
-  for (const table of ["dogs", "dog_photos", "settings", "user", "account", "session", "verification", "adoption_applications", "volunteer_applications"]) {
+  for (const table of ["dogs", "dog_photos", "settings", "user", "account", "session", "verification", "adoption_applications", "volunteer_applications", "in_kind_donations"]) {
     const result = await tx.execute(`SELECT count(*) AS n FROM ${quote(table)}`);
     if (Number(result.rows[0].n) > 0) hasExistingData = true;
   }

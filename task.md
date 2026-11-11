@@ -106,4 +106,14 @@ G. English version (full EL/EN bilingual)
 - User supplied bank account certificate and explicitly approved publishing only the bank name, beneficiary and IBAN. Certificate image and handwritten tax number remain private and are not included in website assets or Git.
 - Confirmed transcription: Τράπεζα Πειραιώς; ΔΗΜΟΣ ΜΕΤΕΩΡΩΝ; GR33 0172 6150 0056 1505 1178 648. IBAN has 27 characters and passes mod-97 checksum (this is format validation, not independent bank-account verification).
 - Saved these three fields through the existing live administrator settings API and verified readback. Other contact/social/reference settings preserved exactly; local preview and initial-install snapshot synchronized.
-- Live bank details already visible with no horizontal overflow at 1280/390/320px. Updated donation note to avoid saying the now-published account is still awaiting publication. Build passed; note deployment pending.
+- Live bank details already visible with no horizontal overflow at 1280/390/320px. Updated donation note to avoid saying the now-published account is still awaiting publication. Build passed.
+- Deployment 6af44db904b5e5969b715c34 ready on the existing site. Live Greek/English details and corrected note verified, along with 1280/390/320px layout and exact clipboard copying of the IBAN. Source pushed to existing GitHub main (042687e).
+
+## New public contact and in-kind donation offers
+- User approved replacing public contact email with info@kinokomeiodimoumeteoron.gr and an in-page /donate form: name, phone, email, goods, quantity, proposed date, optional time/notes and contact consent.
+- Live settings email saved and read back through existing admin API; all bank/contact/social/reference fields otherwise preserved. Local preview, fallback contact and installer snapshot aligned.
+- Added private in_kind_donations table and additive/idempotent migration to production installer; no existing data replaced. Submissions are stored before optional notification, and are visible in Admin → Applications → In-kind donations with review status, internal notes and CSV export.
+- Date/time validated server-side, with Greece-local minimum date and required contact consent. Public copy explicitly says delivery requires confirmation, not an automatic appointment. Success/error/reset states preserve the surrounding donation page.
+- Notifications use the maintained public contact address when email delivery is configured. User text escaped in HTML notifications. No mailbox or email credentials created. DNS MX check returned NXDOMAIN/no records; domain/mailbox setup and Resend delivery remain pending.
+- Build passed. Isolated API tests passed for new submissions, validation, consent, private access/review/notes/deletion, migration preservation and missing-email-provider persistence. Browser-only mocked UI tests passed at 1280/390/320px, including email link, error/retry/success/reset, English labels and admin details.
+- Live form deployment/verification pending.

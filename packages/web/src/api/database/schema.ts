@@ -117,3 +117,23 @@ export const volunteerApplications = sqliteTable("volunteer_applications", {
     .$defaultFn(() => new Date()),
   updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
 });
+
+/** Private goods offers; proposed delivery is not an automatically booked appointment. */
+export const inKindDonations = sqliteTable("in_kind_donations", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  fullName: text("full_name").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email").notNull(),
+  items: text("items").notNull(),
+  quantity: text("quantity").notNull(),
+  proposedDate: text("proposed_date").notNull(),
+  proposedTime: text("proposed_time").notNull().default(""),
+  notes: text("notes").notNull().default(""),
+  agreeContact: integer("agree_contact", { mode: "boolean" }).notNull().default(false),
+  locale: text("locale").notNull().default("el"),
+  status: text("status", { enum: ["new", "review", "approved", "rejected"] }).notNull().default("new"),
+  staffNotes: text("staff_notes"),
+  handledBy: text("handled_by"),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
+});
