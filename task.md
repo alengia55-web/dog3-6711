@@ -88,4 +88,15 @@ G. English version (full EL/EN bilingual)
 - Updated first-install contact snapshot to confirmed public email/phone and blank placeholder beneficiary.
 - Domain DNS Google resolver returned NXDOMAIN for apex/www and no NS records. Netlify connected inventory has no custom-domain write action; browser Netlify dashboard is not logged in. Registrar/Netlify domain configuration requires owner input.
 - Kept WEBSITE_URL on working Netlify hostname; custom-domain auth/origin switch pending domain activation, to avoid breaking live forms/admin.
-- Local build and mobile header overflow tests passed. Live rebrand deployment pending verification.
+- Local build and mobile header overflow tests passed. Live rebrand deploy 6af443319f88bc53f2c1a569 is ready at https://shelterdogsk.netlify.app.
+- Live verification passed: Greek title/branding across home, adoption, volunteer, donation and admin login; no old name in rendered page text; original dog illustration retained. Contact mailto/tel unchanged; logo lockup and sharing image served successfully.
+- Full live gallery regression passed: 15 cards, arrows/thumbnails/keyboard, close/backdrop/Escape/focus restoration, repeated donation links, 390px/320px mobile, direct profiles and single-photo fallback.
+- Rechecked apex/www DNS: NXDOMAIN (status 3), no NS answers. Custom domain remains unconnected; registrar and exact purchased spelling needed from owner.
+
+## Per-dog official adoption references
+- User selected individual official listing URLs with an editable field in each dog's admin form. No individual listing URLs were provided, so all existing fields remain blank.
+- Added petGovUrl storage, a repeatable additive migration and production build migration hook. Existing dogs, photos, accounts and application data are preserved.
+- Admin field validates HTTPS individual listings on pet.gov.gr/adoptastray.gov.gr with a numeric details?id value. Blank values can be saved; unrelated updates preserve existing URLs.
+- Every popup/direct profile shows the individual link when supplied. Missing links are explicitly labeled with a separate general platform browse link; no listing IDs, registration status or legal-compliance claims invented.
+- Build passed. Isolated API tests passed: additive migration/idempotence, URL allowlist, authorization, create/update/read/clear and preservation. Browser tests passed for all 15 missing-link references; browser-only mocked individual URLs and admin field validation/save/clear passed without real dog data changes.
+- Live deployment and verification pending.

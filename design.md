@@ -56,6 +56,7 @@ Text is always near-black `--ink` on pastel or white — no pastel text, no gray
 - Clicking a card opens an accessible, centered compact dog-preview dialog (max 880px, scrollable within 90vh). Direct profile URLs and modified-click new tabs remain supported.
 - Gallery uses uncropped contained photographs, previous/next buttons, a photo counter, selectable thumbnails, keyboard arrows and mobile swipe. Single-photo dogs never show invented gallery items.
 - Donation links have stable hit areas (no moving hover transforms), remain visible on mobile and reliably open the donation page at its top.
+- Each popup/profile includes a sky-colored official adoption-platform reference section. An admin-supplied pet.gov.gr listing opens in a new tab; absent URLs are explicitly marked as not yet added, with a separately labeled general platform link. Never imply an unprovided listing exists or is verified.
 
 ## Layout
 

@@ -7,6 +7,7 @@ import { CoverPhotoInput, GalleryInput } from "../../components/admin/photo-uplo
 import { orpc } from "../../lib/api";
 import { useAdminText, useDogMutations } from "../../queries/admin";
 import { CheckRow, Field, Select, TextArea, TextInput } from "../../components/ui/field";
+import { isPetGovListingUrl } from "../../../shared/pet-gov";
 
 interface DogForm {
   name: string;
@@ -24,6 +25,7 @@ interface DogForm {
   sterilized: boolean;
   vaccinated: boolean;
   microchip: boolean;
+  petGovUrl: string;
   adopted: boolean;
   adoptedAt: string;
   gallery: string[];
@@ -45,6 +47,7 @@ const empty: DogForm = {
   sterilized: true,
   vaccinated: true,
   microchip: true,
+  petGovUrl: "",
   adopted: false,
   adoptedAt: "",
   gallery: [],
@@ -82,6 +85,7 @@ export default function AdminDogForm() {
       sterilized: dog.sterilized,
       vaccinated: dog.vaccinated,
       microchip: dog.microchip,
+      petGovUrl: dog.petGovUrl,
       adopted: dog.adopted,
       adoptedAt: dog.adoptedAt ?? "",
       gallery: dog.gallery,
@@ -113,7 +117,12 @@ export default function AdminDogForm() {
       setError(a.form.required);
       return;
     }
-    const payload = { ...form, adoptedAt: form.adopted ? form.adoptedAt || null : null };
+    const petGovUrl = form.petGovUrl.trim();
+    if (petGovUrl && !isPetGovListingUrl(petGovUrl)) {
+      setError(a.form.petGovInvalid);
+      return;
+    }
+    const payload = { ...form, petGovUrl, adoptedAt: form.adopted ? form.adoptedAt || null : null };
     try {
       if (id === null) await create.mutateAsync(payload);
       else await update.mutateAsync({ ...payload, id });
@@ -189,6 +198,17 @@ export default function AdminDogForm() {
                 value={form.storyEn}
                 onChange={(e) => set("storyEn")(e.target.value)}
                 rows={5}
+              />
+            </Field>
+          </section>
+
+          <section className="comic-card bg-sky p-5">
+            <Field label={a.form.petGovUrl} hint={a.form.petGovHint}>
+              <TextInput
+                type="url"
+                value={form.petGovUrl}
+                placeholder="https://pet.gov.gr/emzs-pet-adoption-gateway/details?id=…"
+                onChange={(e) => set("petGovUrl")(e.target.value)}
               />
             </Field>
           </section>

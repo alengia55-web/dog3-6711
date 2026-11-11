@@ -39,6 +39,7 @@ export const dogs = sqliteTable("dogs", {
   sterilized: integer("sterilized", { mode: "boolean" }).notNull().default(true),
   vaccinated: integer("vaccinated", { mode: "boolean" }).notNull().default(true),
   microchip: integer("microchip", { mode: "boolean" }).notNull().default(true),
+  petGovUrl: text("pet_gov_url").notNull().default(""),
   adopted: integer("adopted", { mode: "boolean" }).notNull().default(false),
   adoptedAt: text("adopted_at"),
   sortOrder: integer("sort_order").notNull().default(0),

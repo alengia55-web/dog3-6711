@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { createClient, type InValue } from "@libsql/client";
+import { ensurePetGovColumn } from "./migrate-pet-gov";
 
 type RecordRow = Record<string, InValue>;
 type Snapshot = {
@@ -35,6 +36,7 @@ try {
     if (!/^CREATE (?:TABLE|(?:UNIQUE )?INDEX)\s/i.test(sql)) throw new Error("Unsupported schema statement.");
     await tx.execute(sql.replace(/^CREATE (TABLE|(?:UNIQUE )?INDEX)\s/i, "CREATE $1 IF NOT EXISTS "));
   }
+  await ensurePetGovColumn(tx);
 
   let hasExistingData = false;
   for (const table of ["dogs", "dog_photos", "settings", "user", "account", "session", "verification", "adoption_applications", "volunteer_applications"]) {

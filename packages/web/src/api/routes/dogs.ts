@@ -7,6 +7,12 @@ import * as schema from "../database/schema";
 import { seedDogsIfEmpty } from "../database/seed-dogs";
 import { staffProcedure } from "../lib/guards";
 import { slugify } from "../lib/slug";
+import { isPetGovListingUrl } from "../../shared/pet-gov";
+
+const petGovUrlInput = z.string().trim().max(500).refine(
+  value => value === "" || isPetGovListingUrl(value),
+  "Χρειάζεται έγκυρος σύνδεσμος συγκεκριμένης αγγελίας pet.gov.gr / Enter an official individual pet.gov.gr listing URL",
+);
 
 const dogInput = z.object({
   name: z.string().min(1).max(120),
@@ -24,6 +30,7 @@ const dogInput = z.object({
   sterilized: z.boolean().default(true),
   vaccinated: z.boolean().default(true),
   microchip: z.boolean().default(true),
+  petGovUrl: petGovUrlInput.default(""),
   adopted: z.boolean().default(false),
   adoptedAt: z.string().max(20).nullable().default(null),
   gallery: z.array(z.string().max(500)).max(12).default([]),
@@ -134,7 +141,7 @@ export const dogs = {
   }),
 
   update: staffProcedure
-    .input(dogInput.partial().extend({ id: z.number() }))
+    .input(dogInput.partial().extend({ id: z.number(), petGovUrl: petGovUrlInput.optional() }))
     .handler(async ({ input }) => {
       const { id, gallery, ...values } = input;
       const current = await requireDog(id);
