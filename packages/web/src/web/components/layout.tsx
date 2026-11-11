@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Heart, Instagram, Menu, X } from "lucide-react";
+import { Heart, Menu, X } from "lucide-react";
 import { useLocale } from "../hooks/use-locale";
 import { useContact } from "../hooks/use-contact";
 import { ComicLink, PawTrail } from "./ui/comic";
@@ -172,9 +172,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h3 className="font-display text-lg">{t.contact.follow}</h3>
               <div className="mt-3 flex flex-wrap gap-2">
-                <ComicLink href={CONTACT.instagram} tone="pink" size="sm" external>
-                  <Instagram className="size-4" /> Instagram
-                </ComicLink>
                 <ComicLink to="/adopt" tone="mint" size="sm">
                   {t.nav.adopt}
                 </ComicLink>

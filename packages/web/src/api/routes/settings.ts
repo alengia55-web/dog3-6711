@@ -24,7 +24,7 @@ export const DEFAULT_SETTINGS: Record<SettingKey, string> = {
   phone: "",
   email: "",
   address: "",
-  instagram: "https://www.instagram.com/",
+  instagram: "",
   facebook: "",
   bankName: "",
   iban: "",

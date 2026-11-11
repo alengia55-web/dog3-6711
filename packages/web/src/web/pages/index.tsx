@@ -5,7 +5,7 @@ import {
   Heart,
   HeartHandshake,
   Home,
-  Instagram,
+  Mail,
   PawPrint,
   Search,
   Stethoscope,
@@ -220,8 +220,8 @@ function VolunteerBand() {
             <ComicLink to="/volunteer" tone="ink" size="lg">
               <Users className="size-5" /> {t.volunteer.title}
             </ComicLink>
-            <ComicLink href={CONTACT.instagram} tone="white" size="lg" external>
-              <Instagram className="size-5" /> Instagram
+            <ComicLink href={`mailto:${CONTACT.email}`} tone="white" size="lg">
+              <Mail className="size-5" /> {t.contact.email}
             </ComicLink>
           </div>
         </div>

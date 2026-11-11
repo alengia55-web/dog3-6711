@@ -8,7 +8,6 @@ const FIELDS = [
   "phone",
   "email",
   "address",
-  "instagram",
   "facebook",
   "bankName",
   "iban",
@@ -40,7 +39,7 @@ export default function AdminSettings() {
           onSubmit={async (event) => {
             event.preventDefault();
             setDone(false);
-            await save.mutateAsync(values);
+            await save.mutateAsync({ ...values, instagram: "" });
             setDone(true);
           }}
           className="space-y-6"

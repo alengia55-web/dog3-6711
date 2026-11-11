@@ -116,4 +116,11 @@ G. English version (full EL/EN bilingual)
 - Date/time validated server-side, with Greece-local minimum date and required contact consent. Public copy explicitly says delivery requires confirmation, not an automatic appointment. Success/error/reset states preserve the surrounding donation page.
 - Notifications use the maintained public contact address when email delivery is configured. User text escaped in HTML notifications. No mailbox or email credentials created. DNS MX check returned NXDOMAIN/no records; domain/mailbox setup and Resend delivery remain pending.
 - Build passed. Isolated API tests passed for new submissions, validation, consent, private access/review/notes/deletion, migration preservation and missing-email-provider persistence. Browser-only mocked UI tests passed at 1280/390/320px, including email link, error/retry/success/reset, English labels and admin details.
-- Live form deployment/verification pending.
+- Live deploy 6af45242e13ec1609fb0c854 ready on the existing site; source pushed to GitHub main (ccac309).
+- Actual live browser submission saved all contact/goods/quantity/proposed date/time/consent fields, displayed success, and was visible in authenticated Admin → Applications → In-kind donations. Notification reported emailed:false. Synthetic submission removed afterward; all preexisting applications verified unchanged.
+- Live responsive/localized/error/success/admin UI tests and the full gallery/donation regression passed. Public new mailto link verified. Automatic email delivery and Papaki mailbox/DNS activation are not configured; offers remain available in admin.
+
+## Remove Instagram
+- Removed public Instagram icons/links and all Greek/English references in contact text, help/error copy and volunteering suggestions. Home contact CTA now opens the maintained email; footer social heading changed to participation.
+- Removed Instagram input from admin settings, cleared its live/local stored URL and installer/default values, retaining only the legacy API key for compatibility. All other contact/bank settings preserved.
+- Build and local Greek/English public-page checks passed. Live removal deployment pending verification.
