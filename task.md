@@ -99,4 +99,11 @@ G. English version (full EL/EN bilingual)
 - Admin field validates HTTPS individual listings on pet.gov.gr/adoptastray.gov.gr with a numeric details?id value. Blank values can be saved; unrelated updates preserve existing URLs.
 - Every popup/direct profile shows the individual link when supplied. Missing links are explicitly labeled with a separate general platform browse link; no listing IDs, registration status or legal-compliance claims invented.
 - Build passed. Isolated API tests passed: additive migration/idempotence, URL allowlist, authorization, create/update/read/clear and preservation. Browser tests passed for all 15 missing-link references; browser-only mocked individual URLs and admin field validation/save/clear passed without real dog data changes.
-- Live deployment and verification pending.
+- Live deploy 6af44b4548b86a783edbd377 ready on the existing https://shelterdogsk.netlify.app site. All 15 blank fields/public references verified. Full live gallery/donation regression passed; Greek/English references, 320px layout and unauthorized mutation rejection verified. Browser-only mocked populated links/admin inputs passed against the deployed frontend; actual persistence/validation tested in isolated SQLite, not by assigning fake URLs to real dogs.
+- Source pushed to existing GitHub main (aa2945b). Individual official listing URLs still need to be entered by staff; adding this feature does not publish dogs to the government platform or establish legal compliance.
+
+## Municipality donation banking details
+- User supplied bank account certificate and explicitly approved publishing only the bank name, beneficiary and IBAN. Certificate image and handwritten tax number remain private and are not included in website assets or Git.
+- Confirmed transcription: Τράπεζα Πειραιώς; ΔΗΜΟΣ ΜΕΤΕΩΡΩΝ; GR33 0172 6150 0056 1505 1178 648. IBAN has 27 characters and passes mod-97 checksum (this is format validation, not independent bank-account verification).
+- Saved these three fields through the existing live administrator settings API and verified readback. Other contact/social/reference settings preserved exactly; local preview and initial-install snapshot synchronized.
+- Live bank details already visible with no horizontal overflow at 1280/390/320px. Updated donation note to avoid saying the now-published account is still awaiting publication. Build passed; note deployment pending.

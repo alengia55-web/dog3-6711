@@ -129,7 +129,7 @@ export default function DonatePage() {
                     copiedText={t.donate.copied}
                   />
                 </div>
-                <p className="text-sm text-ink/70">{t.donate.pendingNote}</p>
+                <p className="text-sm text-ink/70">{CONTACT.iban.trim() && CONTACT.bankName.trim() && CONTACT.beneficiary.trim() ? t.donate.bankNote : t.donate.pendingNote}</p>
               </div>
             </div>
 

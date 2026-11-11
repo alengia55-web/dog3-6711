@@ -87,6 +87,7 @@ export const dict = {
       pending: "Θα ανακοινωθεί",
       pendingNote:
         "Ο λογαριασμός και η αιτιολογία κατάθεσης οριστικοποιούνται με την Οικονομική Υπηρεσία του Δήμου και θα δημοσιευτούν εδώ.",
+      bankNote: "Πριν ολοκληρώσεις την κατάθεση, έλεγξε ότι το IBAN και ο δικαιούχος συμφωνούν με τα παραπάνω στοιχεία.",
       copy: "Αντιγραφή",
       copied: "Αντιγράφηκε!",
       transparencyTitle: "Η δέσμευσή μας",
@@ -295,6 +296,7 @@ export const dict = {
       pending: "To be announced",
       pendingNote:
         "The account and the payment reference are being finalised with the municipal finance department and will be published here.",
+      bankNote: "Before completing your transfer, check that the IBAN and beneficiary match the details above.",
       copy: "Copy",
       copied: "Copied!",
       transparencyTitle: "Our commitment",
